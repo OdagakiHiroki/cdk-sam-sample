@@ -12,8 +12,14 @@ type Response struct {
 	Message string `json:"string"`
 }
 
-func handler(event events.EventBridgeEvent) (events.LambdaFunctionURLResponse, error) {
-	fmt.Println(event.Source)
+type Event struct {
+	events.EventBridgeEvent
+	events.CognitoEventUserPoolsPostConfirmation
+}
+
+func handler(event Event) (events.LambdaFunctionURLResponse, error) {
+	jsonRes, _ := json.Marshal(event)
+	fmt.Println(string(jsonRes))
 	if event.Source == "aws.scheduler" {
 		fmt.Println("called by event bridge scheduler")
 		return events.LambdaFunctionURLResponse{StatusCode: 200, Body: "called by event bridge scheduler"}, nil
