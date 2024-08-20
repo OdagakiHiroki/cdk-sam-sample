@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 
@@ -13,7 +12,7 @@ type Response struct {
 	Message string `json:"string"`
 }
 
-func handler(ctx context.Context, event events.EventBridgeEvent) (events.LambdaFunctionURLResponse, error) {
+func handler(event events.EventBridgeEvent) (events.LambdaFunctionURLResponse, error) {
 	fmt.Println(event.Source)
 	if event.Source == "aws.scheduler" {
 		fmt.Println("called by event bridge scheduler")
