@@ -13,7 +13,12 @@ type Response struct {
 	Message string `json:"string"`
 }
 
-func handler(ctx context.Context, event events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
+func handler(ctx context.Context, event events.EventBridgeEvent) (events.LambdaFunctionURLResponse, error) {
+	fmt.Println(event.Source)
+	if event.Source == "aws.scheduler" {
+		fmt.Println("called by event bridge scheduler")
+		return events.LambdaFunctionURLResponse{StatusCode: 200, Body: "called by event bridge scheduler"}, nil
+	}
 	msg := "Hello world"
 	fmt.Println(msg)
 	responseBody, err := json.Marshal(Response{Message: msg})
