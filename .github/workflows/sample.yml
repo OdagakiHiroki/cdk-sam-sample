@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Log level'
+        required: true
+        default: 'sample'
+        type: string
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello world action
+        env:
+          sample_secret: ${{ secrets.HappyNewYear }}
+        run: |
+          echo sample_secret ${{ inputs.name }}
