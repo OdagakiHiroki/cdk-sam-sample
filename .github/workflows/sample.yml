@@ -2,17 +2,17 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Log level'
+        description: 'name'
         required: true
         default: 'sample'
         type: string
 
 jobs:
-  log-the-inputs:
+  hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello world action
+      - name: Happy New Year Action
         env:
           sample_secret: ${{ secrets.HappyNewYear }}
         run: |
-          echo sample_secret ${{ inputs.name }}
+          echo $sample_secret ${{ inputs.name }}
