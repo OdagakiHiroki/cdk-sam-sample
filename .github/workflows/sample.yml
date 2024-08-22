@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: Happy New Year Action
         env:
-          sample_secret: ${{ secrets.HappyNewYear }}
+          sample_secret: ${{ secrets.HAPPY_NEW_YEAR }}
         run: |
           echo $sample_secret ${{ inputs.name }}
